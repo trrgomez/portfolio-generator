@@ -15,17 +15,41 @@ const promptUser = () => {
     {
       type: "input",
       name: "name",
-      message: "What is your name?",
+      message: "What is your name? (Required)",
+      validate: nameInput => {
+          if(nameInput){
+              return true
+          }else {
+            console.log('Please enter your name!');
+            return false;
+          }
+      }
     },
     {
       type: "input",
       name: "github",
       message: "Enter your GitHub Username",
+      validate: username => {
+        if(username){
+            return true
+        }else {
+          console.log('Please enter your Username!');
+          return false;
+        }
+    }
     },
     {
       type: "input",
       name: "about",
       message: "Provide some information about yourself:",
+      validate: description => {
+        if(description){
+            return true
+        }else {
+          console.log('Please enter a description!');
+          return false;
+        }
+    }
     },
   ]);
 };
