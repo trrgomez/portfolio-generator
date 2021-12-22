@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
-// const fs = require('fs');
-// const generatePage = require('./src/page-template');
+const fs = require("fs");
+const generatePage = require("./src/page-template");
 
 // const pageHTML = generatePage(name, github);
 
@@ -46,17 +46,17 @@ const promptUser = () => {
       default: true,
     },
     {
-        type: 'input',
-        name: 'about',
-        message: 'Provide some information about yourself:',
-        when: ({ confirmAbout }) => {
-          if (confirmAbout) {
-            return true;
-          } else {
-            return false;
-          }
+      type: "input",
+      name: "about",
+      message: "Provide some information about yourself:",
+      when: ({ confirmAbout }) => {
+        if (confirmAbout) {
+          return true;
+        } else {
+          return false;
         }
       },
+    },
   ]);
 };
 
@@ -128,5 +128,9 @@ const promptProject = (portfolioData) => {
 promptUser()
   .then(promptProject)
   .then((portfolioData) => {
-    console.log(portfolioData);
+    const pageHTML = generatePage(portfolioData);
+    fs.writeFile('./index.html', pageHTML, err => {
+      if (err) throw err;
+      console.log('Portfolio complete! Check out index.html to see the output!');
+    });
   });
