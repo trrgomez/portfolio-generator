@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generatePage = require("./src/page-template");
@@ -145,3 +146,6 @@ promptUser()
       });
     });
   });
+=======
+
+>>>>>>> 894e86232c866d404b114ff68c69433511c2996f
